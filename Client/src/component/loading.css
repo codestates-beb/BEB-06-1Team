@@ -1,0 +1,66 @@
+.dot-flashing {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: #1c009b;
+  /* color: #451bfc; */
+  -webkit-animation: dot-flashing 1s infinite linear alternate;
+  animation: dot-flashing 1s infinite linear alternate;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+.dot-flashing::before,
+.dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.dot-flashing::before {
+  left: -65px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1c009b;
+  /* color: #9880ff; */
+  -webkit-animation: dot-flashing 1s infinite alternate;
+  animation: dot-flashing 1s infinite alternate;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.dot-flashing::after {
+  left: 65px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1c009b;
+  /* color: #9880ff; */
+  -webkit-animation: dot-flashing 1s infinite alternate;
+  animation: dot-flashing 1s infinite alternate;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+@-webkit-keyframes dot-flashing {
+  0% {
+    background-color: #1c009b;
+  }
+  50%,
+  100% {
+    background-color: rgba(76, 36, 255, 0.2);
+  }
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: #1c009b;
+  }
+  50%,
+  100% {
+    background-color: rgba(76, 36, 255, 0.2);
+  }
+}
