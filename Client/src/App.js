@@ -1,28 +1,26 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MintPage from "./pages/MintPage"
-// import MetamaskConnect from "./component/MetamaskConnect";
-// import NFTMint from "./component/NFTMint";
-// import NFTList from "./component/NFTList";
-// import MyPage from "./pages/MintPage";
+import React from 'react';
+import './App.css';
+import Home from './apps/Home';
+import Header from './apps/Header';
+// import MetamaskConnect from './apps/MetamaskConnect';
+// import NFTMint from './apps/NFTMint';
+// import NFTList from './apps/NFTList';
+// import MyPage from './apps/MyPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path="/mintpage" element={<MintPage />} />
-        </Routes>
+    <div className="container-fluid">
+      <div className="row">
+        <Header />
       </div>
-    </BrowserRouter>
-    // <div>
-    //   <h1>CheckShirts Scan</h1>
-    //   <MetamaskConnect></MetamaskConnect>
-    //   <NFTMint />
-    //   <NFTList />
-    //   <MyPage />
-    // </div>
+      {/* <MetamaskConnect></MetamaskConnect>
+      <NFTMint />
+      <NFTList />
+      <MyPage /> */}
+      <Home />
+    </div>
   );
-}
+};
 
 export default App;

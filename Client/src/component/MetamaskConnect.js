@@ -33,7 +33,7 @@ function MetamaskConnect() {
     <div className="MetaMask">
       <h3 className="Sum">@메타마스크 연결부</h3>
       <button onClick={metaMaskConnection}> connect</button>
-      <img src={connectstatus} width="30" height="30" />
+      <img src={connectstatus} width="30" height="30" alt="images"/>
       <p>
         {connect} ##Address: {account}
       </p>

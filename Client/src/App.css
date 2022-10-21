@@ -7,6 +7,10 @@
   border: dotted;
   background-color: #61dafb;
 }
+.Logo {
+  width: 100px;
+  height: 100px;
+}
 .Mint {
   border: dotted;
   background-color: cornflowerblue;
