@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-
-
 function MetamaskConnect(props) {
   //@ connection 상태
   const [connectstatus, setConnectstatus] = useState(

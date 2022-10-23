@@ -4,6 +4,7 @@ import Loading from '../component/Loading';
 import Web3 from 'web3'
 import Abi from '../component/Abi';
 import axios from 'axios';
+import TrafficLight from '../component/TrafficLight';
 
 const MintPage = () => {
   //@ 하위컴포넌트인 MetamaskConnect.js에서 지갑 주소를 가져올 state
@@ -31,7 +32,6 @@ const MintPage = () => {
   const tokenURI="https://gateway.pinata.cloud/ipfs/QmRzcbdkzW3FBFVkukXBb1qFiWvUYBgaSPNUVHgUHv4hrA" // 임시
   const contract = new web3.eth.Contract(Abi, contractHx); // abi : 복사해서 그대로 // 고정
 
-
   const EncodeFileToBase64 = (fileBlob) => {
     // https://nukw0n-dev.tistory.com/30#FileReader-readAsDataURL--
     const reader = new FileReader();
@@ -48,42 +48,74 @@ const MintPage = () => {
   }
   const setNFTCollectionName= (e) => {
     setNftCollectionName(e.target.value);
+    //TrafficLight(e.target.value);
   };
   const setNFTArtist= (e) => {
     setNftArtist(e.target.value);
+    //TrafficLight(e.target.value);
   };
   const setNFTName = (e) => {
     setNftName(e.target.value);
+    //TrafficLight(e.target.value);
   };
   // const setNFTDescription = (e) => {
   //   setNftDescription(e.target.value);
   // };
   const saveTextToJson = () => {
+
     const details = {
       account: textValue.account,
-      collection: `${nftCollectionName}`,
       artist: `${nftArtist}`,
-      name: `${nftName}`,
-      base64: `${imageSrc}`
+      collection: `${nftCollectionName}`,
+      name: `${nftName}`
       // description: `${nftDescription}`
     }
     console.log(details);
     return details;
   };
-  const postJsonData = (jsonData) => {
-    axios.post('http://localhost:3000/getthedata', {jsonData})
-    .then(function (response) {
-      console.log(response);
+  function _base64ToArrayBuffer(base64) {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+  const postJsonData = () => {
+
+    //console.log(imageSrc)
+    //const buffer=_base64ToArrayBuffer(imageSrc);
+
+    const data = {
+      "data":"GoodJob_CheckShirts@@@@"
+    }
+
+    axios.post('http://localhost:4000/tokenuri', data)
+    // , {"Content-Type": "application/json", withCredentials: true }
+    .then(function (res) {
+      // console.log(res.data)
+      mintNFT(res.data)
+
+      const tokenJson = {"tokenUri": `${res.data}`}
+      const finalJson = Object.assign(saveTextToJson(), tokenJson);
+      
+      axios.post('http://localhost:4000/getthedata', finalJson)
     })
     .catch(function (error) {
       console.log(error);
     });
   }
-  const mintNFT = () => {
+
+  const mintNFT = (token) => {
     // 추가 작성 필요
-    contract.methods.mintNFT(addr, tokenURI).send({from: addr}); //메소드내를 변경하므로 .send() 사용 vs 계약상태를 변경하지않는다면 .call()
+    contract.methods.mintNFT(addr, token).send({from: addr}).on('receipt', function(receipt){
+    console.log(receipt); //메소드내를 변경하므로 .send() 사용 vs 계약상태를 변경하지않는다면 .call()
+    })
+
     setLoading(true)
-    postJsonData(saveTextToJson()) //DB로 보낼때 필요
+    
+    // postJsonData(saveTextToJson()) //DB로 보낼때 필요
     // postBase64Data(imageSrc)
   }
 
@@ -96,10 +128,6 @@ const MintPage = () => {
   //     console.log(error);
   //   });
   // }
-  // const trafficLight = () => {
-  //   // advanced 요소
-  // }
-  
 
   return (
     <div className="mintpage">
@@ -110,25 +138,37 @@ const MintPage = () => {
         <MetamaskConnect getTextValue= {getTextValue}/>
       </div>
       <div className="mint">
-        <div className="typeCollection">
-          <h2>Collection Name</h2>
+        <div className="imageUpload">
+          <h2>Upload Image</h2>
           <div className="input-group mb-3">
-            <input onChange={setNFTCollectionName} type="text" className="form-control" placeholder="Recipient's username" aria-label="Type NFT Collection" aria-describedby="button-addon2" />
-          </div>  
-        </div>    
+            <input type="file" className="form-control" id="inputGroupFile02" onChange={(e) => {EncodeFileToBase64(e.target.files[0]);}}/>
+          </div>
+          <div className="preview">
+            {imageSrc && <img src={imageSrc} alt="preview-img" />}
+          </div>
+        </div>
         <div className="typeArtist">
           <h2>typeArtist</h2>
           <div className="input-group mb-3">
-            <input onChange={setNFTArtist} type="text" className="form-control" placeholder="Recipient's username" aria-label="Type NFT Artist" aria-describedby="button-addon2" />
+            <input onChange={setNFTArtist} type="text" className="form-control" placeholder="Artist Name" aria-label="Type NFT Artist" aria-describedby="button-addon2" />
           </div>  
-        </div>     
+        </div>
+        <div className="typeCollection">
+          <h2>Collection Name</h2>
+          <div className="input-group mb-3">
+            <input onChange={setNFTCollectionName} type="text" className="form-control" placeholder="Collection Name" aria-label="Type NFT Collection" aria-describedby="button-addon2" />  
+          </div>  
+        </div>         
         <div className="typeName">
           <h2>NFT Name</h2>
           <div className="input-group mb-3">
-            <input onChange={setNFTName} type="text" className="form-control" placeholder="Recipient's username" aria-label="Type NFT Name" aria-describedby="button-addon2" />
-            <button onClick={saveTextToJson} className="btn btn-outline-secondary" type="button" id="button-addon2">save all</button>
+            <input onChange={setNFTName} type="text" className="form-control" placeholder="NFT Name" aria-label="Type NFT Name" aria-describedby="button-addon2" />
           </div>  
         </div>        
+        <div className="buttons">
+          <button onClick={saveTextToJson} className="btn btn-outline-secondary" type="button" id="button-addon2">save all</button>
+          <button onClick={postJsonData} className="btn btn-outline-secondary" type="button" id="button-addon2">mint</button>
+        </div>
         {/* <div className="typeDescription">
           <h2>NFT Description</h2>
           <div className="input-group mb-3">
@@ -136,16 +176,6 @@ const MintPage = () => {
             <button onClick={saveTextToJson} className="btn btn-outline-secondary" type="button" id="button-addon2">save all</button>
           </div>
         </div> */}
-        <div className="imageUpload">
-          <h2>Upload Image</h2>
-          <div className="input-group mb-3">
-            <input type="file" className="form-control" id="inputGroupFile02" onChange={(e) => {EncodeFileToBase64(e.target.files[0]);}}/>
-            <button className="input-group-text" htmlFor="inputGroupFile02" onClick={mintNFT}>mint</button>
-          </div>
-          <div className="preview">
-            {imageSrc && <img src={imageSrc} alt="preview-img" />}
-          </div>
-        </div>
         <div className="mintImage">
           <div>{mintDone ? setLoading(false) : loading ? <Loading /> : null}</div>
         </div>
