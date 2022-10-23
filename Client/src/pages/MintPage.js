@@ -14,8 +14,8 @@ const MintPage = () => {
   const [nftArtist, setNftArtist] = useState();
   //@ NFT 이름
   const [nftName, setNftName] = useState();
-  //@ NFT 상세설명
-  const [nftDescription, setNftDescription] = useState();
+  // //@ NFT 상세설명
+  // const [nftDescription, setNftDescription] = useState();
   //@ 이미지 등록 및 프리뷰 테스트
   const [imageSrc, setImageSrc] = useState('');
   //@ 로딩
@@ -55,25 +55,21 @@ const MintPage = () => {
   const setNFTName = (e) => {
     setNftName(e.target.value);
   };
-  const setNFTDescription = (e) => {
-    setNftDescription(e.target.value);
-  };
+  // const setNFTDescription = (e) => {
+  //   setNftDescription(e.target.value);
+  // };
   const saveTextToJson = () => {
     const details = {
+      account: textValue.account,
       collection: `${nftCollectionName}`,
       artist: `${nftArtist}`,
       name: `${nftName}`,
-      description: `${nftDescription}`
+      base64: `${imageSrc}`
+      // description: `${nftDescription}`
     }
     console.log(details);
     return details;
   };
-  const mintNFT = () => {
-    // 추가 작성 필요
-    contract.methods.mintNFT(addr, tokenURI).send({from: addr}); //메소드내를 변경하므로 .send() 사용 vs 계약상태를 변경하지않는다면 .call()
-    setLoading(true)
-    postJsonData(saveTextToJson())
-  }
   const postJsonData = (jsonData) => {
     axios.post('http://localhost:3000/getthedata', {jsonData})
     .then(function (response) {
@@ -83,10 +79,26 @@ const MintPage = () => {
       console.log(error);
     });
   }
-
-  const trafficLight = () => {
-    // advanced 요소
+  const mintNFT = () => {
+    // 추가 작성 필요
+    contract.methods.mintNFT(addr, tokenURI).send({from: addr}); //메소드내를 변경하므로 .send() 사용 vs 계약상태를 변경하지않는다면 .call()
+    setLoading(true)
+    postJsonData(saveTextToJson()) //DB로 보낼때 필요
+    // postBase64Data(imageSrc)
   }
+
+  // const postBase64Data = (base64Data) => {
+  //   axios.post('http://localhost:3000/getthedata', {base64Data})
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
+  // const trafficLight = () => {
+  //   // advanced 요소
+  // }
   
 
   return (
@@ -114,15 +126,16 @@ const MintPage = () => {
           <h2>NFT Name</h2>
           <div className="input-group mb-3">
             <input onChange={setNFTName} type="text" className="form-control" placeholder="Recipient's username" aria-label="Type NFT Name" aria-describedby="button-addon2" />
+            <button onClick={saveTextToJson} className="btn btn-outline-secondary" type="button" id="button-addon2">save all</button>
           </div>  
         </div>        
-        <div className="typeDescription">
+        {/* <div className="typeDescription">
           <h2>NFT Description</h2>
           <div className="input-group mb-3">
             <input onChange={setNFTDescription} type="text" className="form-control" placeholder="Recipient's username" aria-label="Type NFT Description" aria-describedby="button-addon2"/>
             <button onClick={saveTextToJson} className="btn btn-outline-secondary" type="button" id="button-addon2">save all</button>
           </div>
-        </div>
+        </div> */}
         <div className="imageUpload">
           <h2>Upload Image</h2>
           <div className="input-group mb-3">
