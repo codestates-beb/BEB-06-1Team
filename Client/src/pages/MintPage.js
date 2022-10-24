@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 // import fs from 'fs'
 
 
+
 const MintPage = () => {
   //@ 하위컴포넌트인 MetamaskConnect.js에서 지갑 주소를 가져올 state
   const [textValue, setTextValue] = useState("")
@@ -17,6 +18,8 @@ const MintPage = () => {
   const [nftCollectionName, setNftCollectionName] = useState();
   //@ NFT 작가
   const [nftArtist, setNftArtist] = useState();
+
+const MintPage = () => {
   //@ NFT 이름
   const [nftName, setNftName] = useState();
   //@ 로딩
@@ -62,6 +65,7 @@ const MintPage = () => {
 
 
   const saveTextToJson = () => {
+
     const details = {
       account: textValue.account,
       artist: `${nftArtist}`,
@@ -70,8 +74,10 @@ const MintPage = () => {
       // description: `${nftDescription}`
     }
     //console.log(details);
-    return details;
+    return details
   };
+
+
 
   const postJsonData = () => {
     saveTextToJson(); // 보내기 직전 내용 전체 저장
@@ -104,6 +110,9 @@ const MintPage = () => {
     })
     setLoading(true)
   }
+  const trafficLight = () => {
+    // advanced 요소
+  };
 
   return (
     <div className="container-fluid text-center mt-5">
@@ -151,10 +160,10 @@ const MintPage = () => {
         </div>
     </div>
    </div>
+
+   
   )
 }
- {/* // {mintDone ? setLoading(false) : loading ? <Loading /> : null}</div> 
-    // 민팅이 끝났는지 확인되면 setLoading을 false로 두고
-    // 안 끝났다면 loading의 T/F 확인후 T라면 로딩창 띄우기 아니면 null */}
-export default MintPage;
+}
 
+export default MintPage;

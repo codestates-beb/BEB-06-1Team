@@ -1,4 +1,4 @@
-/* .App {
+.App {
   text-align: center;
   border: dotted;
 }
@@ -21,7 +21,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 8vmin;
   pointer-events: none;
 }
 
@@ -46,11 +46,30 @@
   color: #61dafb;
 }
 
+.inner-addon { 
+  position: relative; 
+}
+
+/* style icon */
+.inner-addon .search {
+position: absolute;
+padding: 10px;
+pointer-events: none;
+}
+
+/* align icon */
+.left-addon .search  { left:  0px;}
+.right-addon .search { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
-  }
-} */
+  } 
+}
