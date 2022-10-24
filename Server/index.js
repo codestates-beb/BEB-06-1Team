@@ -5,12 +5,13 @@ import getTokenUri from "./apps/tokenUri.js";
 import mysql from 'mysql';
 import fs from 'fs';
 import multer from 'multer';
+import dotenv from "dotenv";
+dotenv.config();
 
-const connection = mysql.createConnection({
+var connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "",
-  // database: "nft_list",
+  user: process.env.sqlusser,
+  password: process.env.sqlpassword,
 });
 connection.connect();
 const app = express();
@@ -88,5 +89,11 @@ app.post("/getthedata", (req, res) => {
 
 //@ Data 전송
 app.get("/senddata", (req, res) => {
-  res.send("data를 받으세요 ");
+  connection.query(
+    "SELECT * FROM information", function(error, results, fields) {
+      if (error) throw error;
+      console.log(fields);
+    }
+  )
+  res.send(results);
 });
