@@ -10,7 +10,6 @@ import Footer from './component/Footer';
 // import NFTMint from './apps/NFTMint';
 // import NFTList from './apps/NFTList';
 // import MyPage from './apps/MyPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (

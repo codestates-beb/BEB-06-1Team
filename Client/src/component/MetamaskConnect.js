@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Button from '@mui/material/Button';
 
-function MetamaskConnect() {
+function MetamaskConnect(props) {
   //@ connection 상태
   const [connectstatus, setConnectstatus] = useState(
     "https://testnets.opensea.io/static/images/logos/metamask-fox.svg"
@@ -15,7 +16,10 @@ function MetamaskConnect() {
     0x5: "Goeril",
     0xaa36a7: "Sepolia",
   };
-
+  //@ 자식에서 부모로 account값 props통해서 보내기
+  const sendAccountValue = () => {
+    props.getTextValue({account});
+  }
   //@ Metamask connection
   const metaMaskConnection = async () => {
     const accounts = await window.ethereum.request({
@@ -31,14 +35,17 @@ function MetamaskConnect() {
   };
   return (
     <div className="MetaMask">
-      <h3 className="Sum">@메타마스크 연결부</h3>
-      <button onClick={metaMaskConnection}> connect</button>
+      <Button className="buttons" onClick={metaMaskConnection} variant="contained">connect</Button>
+      <Button className="buttons" onClick={sendAccountValue} variant="contained">start?</Button>
+
+      {/* 계정 주소 pros로 보내기 */}
       <img src={connectstatus} width="30" height="30" alt="images"/>
-      <p>
+      <p className="account">
         {connect} ##Address: {account}
       </p>
     </div>
   );
 }
+
 
 export default MetamaskConnect;
