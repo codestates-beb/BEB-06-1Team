@@ -4,7 +4,7 @@ const node = await IPFS.create();
 export default async function getTokenUri(uri) {
   let test = "test";
   //const image = fs.readFileSync("./Image/doge1.jpg");
-  //const image = fs.readFileSync(uri);
+  // const image = fs.readFileSync(uri);
   const fileAdded = await node.add(uri);
   const initailUri = "https://ipfs.io/ipfs/";
   test = initailUri + fileAdded.cid;

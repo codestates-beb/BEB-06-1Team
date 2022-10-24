@@ -3,7 +3,9 @@ import express, { json } from "express";
 import cors from "cors";
 //const getTokenUri = require("./apps/tokenUri");
 import getTokenUri from "./apps/tokenUri.js";
-import mysql from 'mysql'
+import mysql from 'mysql';
+import fs from 'fs';
+import multer from 'multer';
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -29,7 +31,12 @@ app.get("/", function (req, res) {
 });
 
 app.post("/tokenuri", (req, res) => {
-  const dataAddr = req.body.data;
+
+  console.log(req.body)
+
+  const link = "/home/seominseok/바탕화면/ASDA.png"
+  const dataAddr = fs.readFileSync(link);
+
   const stopdata = { network: 1, preload: 2, ipns: 3, repo: 4, mfsPreload: 5 };
   const test = getTokenUri(dataAddr)
     .then((e) => {
@@ -41,6 +48,11 @@ app.post("/tokenuri", (req, res) => {
 });
 // 저장 따로 전송 따로 ?
 //@ Data 저장 ??
+const upload = multer({
+  storage : multer.memoryStorage() 
+});
+
+
 app.post("/getthedata", (req, res) => {
   // console.log(req.body);
   // connection.query("CREATE DATABASE nft_list", (error, results, fields) => {

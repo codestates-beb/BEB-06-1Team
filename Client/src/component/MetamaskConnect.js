@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from '@mui/material/Button';
 
 function MetamaskConnect(props) {
   //@ connection 상태
@@ -34,9 +35,10 @@ function MetamaskConnect(props) {
   };
   return (
     <div className="MetaMask">
-      <h3 className="Sum">@메타마스크 연결부</h3>
-      <button onClick={metaMaskConnection}>connect</button> 
-      <button onClick={sendAccountValue}>start?</button>
+      <Button className="buttons" onClick={metaMaskConnection} variant="contained">connect</Button>
+      <Button className="buttons" onClick={sendAccountValue} variant="contained">start?</Button>
+
+      {/* 계정 주소 pros로 보내기 */}
       <img src={connectstatus} width="30" height="30" alt="images"/>
       <p className="account">
         {connect} ##Address: {account}
