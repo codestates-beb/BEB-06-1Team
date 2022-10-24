@@ -1,7 +1,6 @@
-//const express = require("express");
+
 import express, { json } from "express";
-import cors from "cors";
-//const getTokenUri = require("./apps/tokenUri");
+import cors from "cors";;
 import getTokenUri from "./apps/tokenUri.js";
 import mysql from 'mysql';
 import fs from 'fs';
@@ -30,15 +29,16 @@ app.get("/", function (req, res) {
   res.send("Hello World");
 });
 
-app.post("/tokenuri", (req, res) => {
+const upload = multer({
+  storage : multer.memoryStorage() 
+});
 
-  console.log(req.body)
-
-  const link = "/home/seominseok/바탕화면/ASDA.png"
-  const dataAddr = fs.readFileSync(link);
+app.post("/tokenuri", upload.single("img") , (req, res) => {
+  
+  console.log(req.file.buffer)
 
   const stopdata = { network: 1, preload: 2, ipns: 3, repo: 4, mfsPreload: 5 };
-  const test = getTokenUri(dataAddr)
+  const test = getTokenUri(req.file.buffer)
     .then((e) => {
       res.send(e);
     })
@@ -48,9 +48,7 @@ app.post("/tokenuri", (req, res) => {
 });
 // 저장 따로 전송 따로 ?
 //@ Data 저장 ??
-const upload = multer({
-  storage : multer.memoryStorage() 
-});
+
 
 
 app.post("/getthedata", (req, res) => {
