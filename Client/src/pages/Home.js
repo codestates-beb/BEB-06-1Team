@@ -1,4 +1,6 @@
 import React from 'react';
+import HeadCarousel from '../component/HeadCarousel';
+
 import art from '../images/art-01.png';
 import music from '../images/music-01.png';
 import trading from '../images/trading-cards-01.png';
@@ -12,6 +14,10 @@ import virtual from '../images/virtual-worlds-01.png';
 const Home = () => {
   return (
     <div className="container-fluid">
+      <div className="text-center">
+        <h1 className="display-1">Explore,collect,and sell NFTs</h1>
+      </div>
+      <HeadCarousel />
       <h1>Browse by category</h1>
       <div className="row text-center">
         <div className="m-1 col card">
