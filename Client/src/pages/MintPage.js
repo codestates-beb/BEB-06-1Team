@@ -45,17 +45,19 @@ const MintPage = () => {
     setNftName(e.target.value);
   };
 
-  const EncodeFileToBase64 = (fileBlob) => {
-    // https://nukw0n-dev.tistory.com/30#FileReader-readAsDataURL--
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        resolve();
-      };
-    });
-  };
+  // const EncodeFileToBase64 = (fileBlob) => {
+
+  //   // https://nukw0n-dev.tistory.com/30#FileReader-readAsDataURL--
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(fileBlob);
+  //   return new Promise((resolve) => {
+  //     reader.onload = () => {
+  //       setImageSrc(reader.result);
+  //       resolve();
+  //     }
+  //   })
+  // }
+
 
   const saveTextToJson = () => {
     const details = {
@@ -110,7 +112,6 @@ const MintPage = () => {
     <div className="container-fluid text-center m-3">
       <div className="header">
         <div className="topText p-3">
-          <h1 className="headline">Mint Page</h1>
         </div>
         <MetamaskConnect getTextValue={getTextValue} />
       </div>
@@ -148,38 +149,16 @@ const MintPage = () => {
                 variant="outlined"
               />
             </div>
-          </div>
-          <div className="col-12 m-1">
-            <TextField
-              onChange={setNFTCollectionName}
-              sx={{ '& > :not(style)': { m: 1, width: '50ch', textAlign: 'left' } }}
-              type="text"
-              className="type-collection-name"
-              id="outlined-basic"
-              label="What is collection name?"
-              variant="outlined"
-            />
-          </div>
-          <div className="col-12 m-1">
-            <TextField
-              onChange={setNFTName}
-              sx={{ '& > :not(style)': { m: 1, width: '50ch', textAlign: 'left' } }}
-              type="text"
-              className="type-NFT-name"
-              id="outlined-basic"
-              label="What is NFT's name?"
-              variant="outlined"
-            />
-          </div>
-          <div className="col-12 m-1 buttons-mint">
-            <Button
-              className="buttons-mint"
-              onClick={postJsonData}
-              variant="contained"
-              sx={{ '& > :not(style)': { m: 1, width: '50ch' } }}
-            >
-              MINT
-            </Button>
+          </div>  
+          <div className="col-12 mb-3">
+            <TextField onChange={setNFTCollectionName} sx={{'& > :not(style)': { m: 1, width: '50ch', textAlign: 'left'},}} type="text" className="type-collection-name" id="outlined-basic" label="What is collection name?" variant="outlined" />
+          </div> 
+          <div className="col-12 mb-3">
+            <TextField onChange={setNFTName} sx={{'& > :not(style)': { m: 1, width: '50ch', textAlign: 'left' },}} type="text" className="type-NFT-name" id="outlined-basic" label="What is NFT's name?" variant="outlined" />
+          </div>  
+          <div className="buttons-mint">
+            <Button className="buttons-mint" onClick={postJsonData} variant="contained" sx={{'& > :not(style)': { m: 1, width: '50ch'},}}>MINT</Button>
+            <mapCard />
           </div>
         </div>
 

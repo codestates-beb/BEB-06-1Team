@@ -11,7 +11,7 @@ import MyPage from './pages/MyPage';
 // import MetamaskConnect from './component/MetamaskConnect';
 // import NFTMint from './component/NFTMint';
 // import NFTList from './component/NFTList';
-
+import Profile from './pages/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
@@ -24,6 +24,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/mintpage" element={<MintPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>
