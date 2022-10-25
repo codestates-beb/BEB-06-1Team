@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/Logomark-Opensea.png';
-import { SearchIcon, BrowserIcon } from '@primer/octicons-react';
+import { SearchIcon, BrowserIcon, PersonFillIcon, HubotIcon } from '@primer/octicons-react';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import HeadOffCanvas from './HeadOffCanvas';
 
 const Header = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false);
+    //console.log('handleClose 함수실행', show);
+  };
+  const handleShow = () => {
+    setShow(true);
+    //console.log('show 함수실행');
+  };
+
   return (
     <div className="container-fluid">
       <Nav variant="pills d-flex p-2" activeKey="1">
@@ -53,32 +65,32 @@ const Header = () => {
         </NavDropdown>
 
         <Nav.Item className="m-3">
-          <Nav.Link eventKey="3">
+          <Nav.Link>
             <Link to="/mintpage">Create </Link>
           </Nav.Link>
         </Nav.Item>
 
         <Nav.Item className="m-3">
-          <Nav.Link eventKey="4">사용자 아이콘</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item className="m-3">
-          <Nav.Link eventKey="5">
-            <Link to="/about">
-              <BrowserIcon size={24} />
+          <Nav.Link>
+            <Link to="/mypage">
+              <PersonFillIcon size={24} />
             </Link>
-            {/* <img
-              src="/docs/5.0/assets/brand/bootstrap-logo.svg"
-              alt=""
-              width="30"
-              height="24"
-              className="d-inline-block align-text-top"
-            /> */}
           </Nav.Link>
         </Nav.Item>
 
         <Nav.Item className="m-3">
-          <Nav.Link eventKey="6">장바구니</Nav.Link>
+          <Nav.Link onClick={handleShow}>
+            <BrowserIcon size={24} />
+          </Nav.Link>
+          <HeadOffCanvas show={show} handleClose={handleClose} placement={'end'} />
+        </Nav.Item>
+
+        <Nav.Item className="m-3">
+          <Nav.Link>
+            <Link to="/mypage">
+              <HubotIcon size={24} />
+            </Link>
+          </Nav.Link>
         </Nav.Item>
       </Nav>
     </div>

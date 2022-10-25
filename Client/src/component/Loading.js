@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import "./loading.css";
+import React from 'react';
+import styled from 'styled-components';
+import './loading.css';
 
 const LoadingContainer = styled.div`
   display: flex;

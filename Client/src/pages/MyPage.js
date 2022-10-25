@@ -5,27 +5,25 @@ import avatar from '../images/cat.jpeg';
 
 const MyPage = () => {
   return (
-    <div>
-      <div>
-        <Card>
-          <Card.Img
-            variant="top"
-            className="MypageBanner"
-            src="https://nft-content.upbit.com/c33a6f1f-80e9-4cc0-b31e-fde04e4a7602"
-          />
-          <Card.Body>
-            <Card.Text>
-              <img src={avatar} className="Avatar align-self-center" alt="CheckShirts" />
-              <h4 className="px-3">Imomo Name</h4>
-              <div className="d-flex px-2">
-                <h6 className="align-self-center px-2">0x3156...C8f3 address</h6>
-                <h6 className="align-self-center px-2 Mypagedate">Joined October 2022</h6>
-              </div>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <br />
-      </div>
+    <div className="container-fluid">
+      <Card style={{ height: '400px' }} className="mb-2">
+        <Card.Img
+          variant="top"
+          className="MypageBanner"
+          src="https://file.mir4global.com/xdraco/img/public/unavailable/bg-unavailable.webp"
+        />
+        <Card.Body>
+          <Card.Text className="Avatar">
+            <img src={avatar} className="Avatarimg align-self-center" alt="CheckShirts" />
+            <h4 className="px-3 red">Imomo Name</h4>
+            <div className="d-flex px-2">
+              <h6 className="align-self-center px-2">0x3156...C8f3 address</h6>
+              <h6 className="align-self-center px-2 Mypagedate">Joined October 2022</h6>
+            </div>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      <br />
       <Nav
         className="px-4"
         variant="tabs"

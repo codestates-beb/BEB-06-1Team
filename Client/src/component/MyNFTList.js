@@ -1,7 +1,7 @@
 import React from 'react';
 
-const NFTList = () => {
+const MyNFTList = () => {
   return <div></div>;
 };
 
-export default NFTList;
+export default MyNFTList;

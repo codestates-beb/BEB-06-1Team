@@ -11,8 +11,8 @@ const HeadCarousel = () => {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h1>싸이와 피네이션의 첫번째 NFT</h1>
+          <p>10월 26일 사전판매 진행중</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -22,8 +22,8 @@ const HeadCarousel = () => {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h1>NFT 알아보기</h1>
+          <p>NFT 서비스 이용방법을 확인해보세요</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -34,8 +34,8 @@ const HeadCarousel = () => {
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <h1>크볼렉트 MIXXINNG 이벤트</h1>
+          <h1>포스트 시즌 및 특별판 NFT 얻을 기회 </h1>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
