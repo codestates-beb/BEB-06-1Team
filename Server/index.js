@@ -5,12 +5,13 @@ import getTokenUri from "./apps/tokenUri.js";
 import mysql from 'mysql';
 import fs from 'fs';
 import multer from 'multer';
+import dotenv from "dotenv";
+dotenv.config();
 
-const connection = mysql.createConnection({
+var connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "12341234",
-  // database: "nft_list",
+  user: process.env.sqlusser,
+  password: process.env.sqlpassword,
 });
 connection.connect();
 const app = express();
@@ -86,6 +87,7 @@ app.post("/getthedata", (req, res) => {
   // res.send(fields);
 });
 
+
 let account = ""
 
 app.post ("/senddata", (req, res) => {
@@ -133,3 +135,4 @@ app.post ("/senddata", (req, res) => {
 //     }
 //   )
 // });
+
