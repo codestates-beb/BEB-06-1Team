@@ -32,7 +32,7 @@ function MetamaskConnect(props) {
     setAccount(accounts[0]);
   };
   return (
-    <div className="MetaMask">
+    <div className="Meta">
       <Button className="buttons" onClick={metaMaskConnection} variant="contained">connect</Button>
       <Button className="buttons" onClick={sendAccountValue} variant="contained">start?</Button>
 

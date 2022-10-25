@@ -7,7 +7,6 @@ import Abi from '../component/Abi';
 import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-// import fs from 'fs'
 
 
 const MintPage = () => {
@@ -47,18 +46,18 @@ const MintPage = () => {
     setNftName(e.target.value);
   };
 
-  const EncodeFileToBase64 = (fileBlob) => {
+  // const EncodeFileToBase64 = (fileBlob) => {
 
-    // https://nukw0n-dev.tistory.com/30#FileReader-readAsDataURL--
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        resolve();
-      }
-    })
-  }
+  //   // https://nukw0n-dev.tistory.com/30#FileReader-readAsDataURL--
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(fileBlob);
+  //   return new Promise((resolve) => {
+  //     reader.onload = () => {
+  //       setImageSrc(reader.result);
+  //       resolve();
+  //     }
+  //   })
+  // }
 
 
   const saveTextToJson = () => {
@@ -110,7 +109,6 @@ const MintPage = () => {
     <div className="container-fluid text-center mt-5">
       <div className="header">
         <div className="topText">
-          <h1 className="headline">Mint Page</h1>
         </div>
         <MetamaskConnect getTextValue= {getTextValue}/>
       </div>
@@ -144,9 +142,9 @@ const MintPage = () => {
           </div>  
           <div className="buttons-mint">
             <Button className="buttons-mint" onClick={postJsonData} variant="contained" sx={{'& > :not(style)': { m: 1, width: '50ch'},}}>MINT</Button>
+            <mapCard />
           </div>
         </div>
-        
         <div className="mintImage">
           <div>{mintDone ? setLoading(false) : loading ? <Loading /> : null}</div>
         </div>
