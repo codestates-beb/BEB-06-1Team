@@ -4,7 +4,7 @@ Client/src/component/
 </h2>
 MetamaskConnect.js
 : 메타마스크 연결과 관련된 내용들이 포함되어 있음. 부모 컴포넌트에서 호출할 경우 연결된 지갑주소를 props로 전달해줌.
-
+<
 Abi.js
 : NFT 민팅을 위해 솔리디티 언어로 배포된 코드의 abi 파일. 이를 이용하여 js를 통해 컨트랙트의 함수를 호출할 수 있음.
 
