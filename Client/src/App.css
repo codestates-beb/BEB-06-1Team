@@ -1,6 +1,9 @@
-.App {
-  text-align: center;
-  border: dotted;
+.App {  
+  height: auto;
+  background: linear-gradient(180deg, white, rgb(186, 170, 225),rgb(237, 118, 213)); 
+}
+.card{
+  height: 400px;
 }
 .MypageBanner{
   width: 100%;
@@ -17,12 +20,25 @@
   font-size: large;
 }
 .Avatar{
+  position: absolute;
+  top: 110px;
+  left: 50px;
+}
+.canvasimg{
+  width: 50px;
+  height: 50px;
+  border: solid;
+  border-width: 5px;
+  border-color: #d3d7d9;
+  border-radius: 10ch; 
+}
+.Avatarimg{
   width: 200px;
   height: 200px;
   border: solid;
   border-width: 5px;
   border-color: #d3d7d9;
-  border-radius: 10ch;
+  border-radius: 10ch; 
 }
 .MetaMask {
   text-align: right;

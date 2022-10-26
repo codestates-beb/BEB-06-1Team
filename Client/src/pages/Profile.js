@@ -46,7 +46,7 @@ const Profile = () => {
 
     return (
         <div>
-            <MetamaskConnect getTextValue= {getTextValue}/>
+            {/* <MetamaskConnect getTextValue= {getTextValue}/> */}
         </div>
     );
 };
