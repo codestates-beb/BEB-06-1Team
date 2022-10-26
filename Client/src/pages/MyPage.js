@@ -9,11 +9,6 @@ const MyPage = () => {
   //@ 하위컴포넌트인 MetamaskConnect.js에서 지갑 주소를 가져올 state
   const [textValue, setTextValue] = useState('');
   const [NFTdatas, setNFTdatas] = useState([]);
-  
-  const getTextValue = async () => {
-    
-   
-  };
 
   useEffect(() => {
     const fetchData = async () => {

@@ -28,6 +28,7 @@ const MintPage = () => {
   const web3 = new Web3(Web3.givenProvider || []); // 고정
   
   let addr = '';
+  
   if(textValue != null){
     addr = textValue.account;
   }
