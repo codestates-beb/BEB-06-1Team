@@ -7,11 +7,8 @@ import Footer from './component/Footer';
 import Home from './pages/Home';
 import MintPage from './pages/MintPage';
 import MyPage from './pages/MyPage';
-
-// import MetamaskConnect from './component/MetamaskConnect';
-// import NFTMint from './component/NFTMint';
-// import NFTList from './component/NFTList';
 import Profile from './pages/Profile';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
