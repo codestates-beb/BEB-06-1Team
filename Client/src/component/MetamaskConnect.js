@@ -23,7 +23,8 @@ const isConnectMetaMask = async () => {
   let network = chinidList[chainid * 1];
   // setConnectstatus('https://storage.googleapis.com/opensea-static/opensea-profile/29.png');
   // setConnect(`Connected Network: ${network}`);
-  // setAccount(accounts[0]); 
+  // setAccount(accounts[0]);
+  
   let data = {
     network: network,
     account: accounts[0],
